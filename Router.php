@@ -24,7 +24,7 @@ class Router
         $action = $this->routes[$method][$uri] ?? null;
         
         if(is_null($action)){
-            throw new HttpNotFoundException();
+            throw new HttpNotFoundException("No se ha encontrado la dirrecion de la ruta");
         }
         
         return $action;
@@ -35,6 +35,18 @@ class Router
     }
     
     public function post(string $uri, callable $action) {
-      $this->routes[HttpMethod::POST->value][$uri] = $action;
-  }
+        $this->routes[HttpMethod::POST->value][$uri] = $action;
+    }
+    
+    public function put(string $uri, callable $action) {
+        $this->routes[HttpMethod::PUT->value][$uri] = $action;
+    }
+    
+    public function patch(string $uri, callable $action) {
+        $this->routes[HttpMethod::PATCH->value][$uri] = $action;
+    }
+    
+    public function delete(string $uri, callable $action) {
+        $this->routes[HttpMethod::DELETE->value][$uri] = $action;
+    }
 }
