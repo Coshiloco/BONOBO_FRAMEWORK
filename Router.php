@@ -1,6 +1,7 @@
 <?php
 
 require "./HttpMethod.php";
+require "./HttpNotFoundException.php";
 
 class Router
 {
@@ -10,6 +11,23 @@ class Router
         foreach (HttpMethod::cases() as $method){
             $this->routes[$method->value] = [];
         }
+    }
+    
+    // definimos el resolve por aqui
+    public function resolve() {
+        $method = $_SERVER["REQUEST_METHOD"];
+        $uri = $_SERVER["REQUEST_URI"];
+        
+        /* Si hay una ruta que no la puede coger lo que tenemos
+        que hacer e sun ternario para que no caiga en error el programa */
+        
+        $action = $this->routes[$method][$uri] ?? null;
+        
+        if(is_null($action)){
+            throw new HttpNotFoundException();
+        }
+        
+        return $action;
     }
     
     public function get(string $uri, callable $action) {
