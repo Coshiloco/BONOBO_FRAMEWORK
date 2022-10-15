@@ -1,6 +1,10 @@
 <?php
 
-require "./Router.php";
+// Para que funciona el espacio de nombres tenemos que utilizar el autoload de composer
+require_once "./vendor/autoload.php";
+
+use Bonovo\HttpNotFoundException;
+use Bonovo\Router;
 
 $router = new Router();
 

@@ -1,7 +1,10 @@
 <?php
 
-require "./HttpMethod.php";
-require "./HttpNotFoundException.php";
+// Para la importacion ponemos el namespace que hemos creado
+// Es decir cuando utilizamos una clase puede cogerla del namespace de donde lo comparten todas las clases 
+namespace Bonovo;
+
+use Bonovo\HttpNotFoundException;
 
 class Router
 {
