@@ -17,9 +17,9 @@ class Router
     }
     
     // definimos el resolve por aqui
-    public function resolve() {
-        $method = $_SERVER["REQUEST_METHOD"];
-        $uri = $_SERVER["REQUEST_URI"];
+    public function resolve(string $uri, string $method) {
+        /*Se lo pasamos por parametro 
+        para hacer los tests*/
         
         /* Si hay una ruta que no la puede coger lo que tenemos
         que hacer e sun ternario para que no caiga en error el programa */

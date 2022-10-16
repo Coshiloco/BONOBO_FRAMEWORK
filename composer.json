@@ -8,6 +8,9 @@
       "Bonovo\\": "src/Bonovo"
     }
   },
+  "scripts": {
+    "tests": "phpunit --color=always --testdox -v tests/"
+  },
   "autoload-dev": {
     "psr-4": {
       "Bonovo\\Tests\\": "tests"
