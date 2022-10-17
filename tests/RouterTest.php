@@ -48,14 +48,35 @@ class RouterTest extends TestCase {
     
     /*Lo primero es que vamos ha hacr un array de arrays  */
     $routes = [
-      [HttpMethod::GET],
-      [HttpMethod::POST],
-      [HttpMethod::PUT],
-      [HttpMethod::PATCH],
-      [HttpMethod::DELETE],
+      [HttpMethod::GET, "/test", fn () => "get"],
+      [HttpMethod::POST, "/test", fn () => "post"],
+      [HttpMethod::PUT, "/test", fn () => "put"],
+      [HttpMethod::PATCH, "/test", fn () => "patch"],
+      [HttpMethod::DELETE, "/test", fn () => "delete"],
+      
+      
+      [HttpMethod::GET, "/random/test", fn () => "get"],
+      [HttpMethod::POST, "/random/nested/test", fn () => "post"],
+      [HttpMethod::PUT, "/put/random/route", fn () => "put"],
+      [HttpMethod::PATCH, "/some/patch/route", fn () => "patch"],
+      [HttpMethod::DELETE, "/d", fn () => "delete"],
     ];
     
-  
+    $router = new Router();
+    
+    // nos las recorremos 
+    
+    foreach ($routes as [$method, $uri, $action]) {
+      // elmatch nos permite extraer cada metodo de la lista de routas
+      // como el nombre del metodo coincide con el de la funcion no hace falta
+      // aqui registramos las rutas 
+      $router->{strtolower($method->value)}($uri, $action);
+    }
+    
+    foreach ($routes as [$method, $uri, $action]) {
+      //Aqui las testeamos
+      $this->assertEquals($action, $router->resolve($uri, $method->value));
+    }
   }
 
 }
